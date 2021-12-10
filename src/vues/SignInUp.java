@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import controller.ArticleDao;
+import controller.PanelsManager;
 import controller.UserDao;
 import model.Article;
 import model.User;
@@ -27,7 +28,7 @@ public class SignInUp extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public SignInUp(JPanel contentPane, JPanel oldPane) {
+	public SignInUp() {
 		setLayout(null);
 		setVisible(true);
 		setBounds(0, 0, 800, 564);
@@ -74,10 +75,10 @@ public class SignInUp extends JPanel {
 
 				if(usDao.login(email_saisie, pwd_saisie)) {
 					JOptionPane.showMessageDialog(null, "Connecté !");
-					contentPane.removeAll();
-					contentPane.add(new HomePage(contentPane, oldPane));
-					contentPane.repaint();
-					contentPane.revalidate();
+					PanelsManager.contentPane.removeAll();
+					PanelsManager.contentPane.add(PanelsManager.switchHomePage());
+					PanelsManager.contentPane.repaint();
+					PanelsManager.contentPane.revalidate();
 				}else {
 					JOptionPane.showMessageDialog(null, "Impossible de se connecter");
 				}
@@ -165,10 +166,10 @@ public class SignInUp extends JPanel {
 		JButton returnButton = new JButton("Retour");
 		returnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				contentPane.removeAll();
-				contentPane.add(new HomePage(contentPane, oldPane));
-				contentPane.repaint();
-				contentPane.revalidate();
+				PanelsManager.contentPane.removeAll();
+				PanelsManager.contentPane.add(PanelsManager.switchHomePage());
+				PanelsManager.contentPane.repaint();
+				PanelsManager.contentPane.revalidate();
 			}
 		});
 		returnButton.setBounds(275, 11, 89, 23);

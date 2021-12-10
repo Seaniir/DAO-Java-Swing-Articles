@@ -1,6 +1,7 @@
 package vues;
 
 import controller.ArticleDao;
+import controller.PanelsManager;
 import model.Article;
 
 import javax.swing.JPanel;
@@ -20,7 +21,7 @@ public class CreateArticle extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public CreateArticle(JPanel contentPane, JPanel oldPane) {
+	public CreateArticle() {
 		setLayout(null);
 		setVisible(true);
 		setBounds(0, 0, 800, 564);
@@ -70,10 +71,10 @@ public class CreateArticle extends JPanel {
 		JButton btnNewButton_1 = new JButton("Retour");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-						contentPane.removeAll();
-						contentPane.add(new HomePage(contentPane, oldPane));
-						contentPane.repaint();
-						contentPane.revalidate();
+				PanelsManager.contentPane.removeAll();
+				PanelsManager.contentPane.add(PanelsManager.switchHomePage());
+				PanelsManager.contentPane.repaint();
+				PanelsManager.contentPane.revalidate();
 			}
 		});
 		btnNewButton_1.setBounds(685, 11, 89, 23);

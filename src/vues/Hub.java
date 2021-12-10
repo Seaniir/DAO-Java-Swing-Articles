@@ -1,5 +1,7 @@
 package vues;
 
+import controller.PanelsManager;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -37,9 +39,9 @@ public class Hub extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
-		oldPane = contentPane;
-		contentPane.add(new HomePage(contentPane, oldPane));
-		setContentPane(contentPane);
+		PanelsManager.contentPane = contentPane;
+		PanelsManager.contentPane.add(PanelsManager.switchHomePage());
+		setContentPane(PanelsManager.contentPane);
 	}
 
 }

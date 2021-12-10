@@ -1,6 +1,7 @@
 package vues;
 
 import controller.ArticleDao;
+import controller.PanelsManager;
 import model.Article;
 import model.User;
 
@@ -20,7 +21,7 @@ public class HomePage extends JPanel {
 	 * Create the panel.
 	 */
 
-	public HomePage(JPanel contentPane, JPanel oldPane) {
+	public HomePage() {
 		int scrollHeigth = 0;
 		setLayout(null);
 		setVisible(true);
@@ -86,10 +87,10 @@ public class HomePage extends JPanel {
 			JButton articleCreateButton = new JButton("Cr\u00e9er un article");
 			articleCreateButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					contentPane.removeAll();
-					contentPane.add(new CreateArticle(contentPane, oldPane));
-					contentPane.repaint();
-					contentPane.revalidate();
+					removeAll();
+					add(PanelsManager.switchCreateArticle());
+					repaint();
+					revalidate();
 				}
 			});
 			articleCreateButton.setBounds(577, 11, 196, 23);
@@ -104,10 +105,10 @@ public class HomePage extends JPanel {
 			JButton btnNewButton = new JButton("Connexion/Inscription");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					contentPane.removeAll();
-					contentPane.add(new SignInUp(contentPane, oldPane));
-					contentPane.repaint();
-					contentPane.revalidate();
+					PanelsManager.contentPane.removeAll();
+					PanelsManager.contentPane.add(PanelsManager.switchSignInUp());
+					PanelsManager.contentPane.repaint();
+					PanelsManager.contentPane.revalidate();
 				}
 			});
 			btnNewButton.setBounds(577, 11, 196, 23);
